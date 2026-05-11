@@ -1,0 +1,18 @@
+GrassBuddy Invoicer files are in this folder:
+
+/Users/Klevr/Documents/Codex/2026-05-11/build-version-1-of-grassbuddy-invoicer
+
+Main files:
+- package.json
+- src/App.tsx
+- src/main.tsx
+- src/index.css
+- supabase/schema.sql
+- server/index.js
+
+Run locally with:
+npm install
+npm run dev
+
+PayPal launch setup:
+PayPal founder checkout is set to https://www.paypal.com/ncp/payment/Z2TLRXLMMF57S.
