@@ -25,7 +25,7 @@ function Shell({ children, user, onLogout }: { children: React.ReactNode; user: 
       <header className="no-print sticky top-0 z-20 border-b border-line bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
           <Link to="/" className="flex items-center gap-2 font-semibold">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-pine-800 text-white"><Leaf size={18} /></span>
+            <img src="/logo.png" alt="GrassBuddy" className="h-10 w-10 rounded-lg object-cover" />
             GrassBuddy
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium text-gray-600 md:flex">
@@ -83,14 +83,20 @@ function Landing() {
   );
 }
 
+const dealFeatures: Record<string, string[]> = {
+  "Founder Lifetime": ["Unlimited invoices", "Residential + commercial templates", "PDF downloads", "Stripe/PayPal payment links", "Future founder updates"],
+  "Future Pro Plan": ["Unlimited invoices", "Residential + commercial templates", "PDF downloads", "Team collaboration", "Priority support"],
+  "Future Business Plan": ["Everything in Pro", "Multiple team members", "Custom branding", "Advanced reporting", "API access"],
+};
+
 function DealCard({ title, price, active }: { title: string; price: string; active?: boolean }) {
+  const features = dealFeatures[title] ?? [];
   return (
     <div className={(active ? "border-pine-700 bg-pine-900 text-white" : "border-line bg-white") + " rounded-lg border p-6 shadow-soft"}>
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="mt-3 text-3xl font-semibold">{price}</p>
       <ul className={(active ? "text-pine-50" : "text-gray-600") + " mt-5 space-y-2 text-sm"}>
-        <li>Unlimited invoices</li><li>Residential + commercial templates</li>
-        <li>PDF downloads</li><li>Stripe/PayPal payment links</li>
+        {features.map(f => <li key={f}>{f}</li>)}
       </ul>
     </div>
   );
