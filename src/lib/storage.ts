@@ -1,6 +1,31 @@
-import type { BrandingSettings, DemoUser, Invoice, PaymentSettings } from "../types";
-import { defaultBranding, defaultPaymentSettings, demoUser, seedInvoices } from "./demoData";
-const keys = { user: "grassbuddy:user", invoices: "grassbuddy:invoices", payments: "grassbuddy:payments", branding: "grassbuddy:branding" };
-const read = <T,>(key: string, fallback: T): T => { const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) as T : fallback; };
-const write = <T,>(key: string, value: T) => localStorage.setItem(key, JSON.stringify(value));
-export const store = { getUser: () => read<DemoUser | null>(keys.user, demoUser), setUser: (user: DemoUser | null) => write(keys.user, user), getInvoices: () => read<Invoice[]>(keys.invoices, seedInvoices), setInvoices: (invoices: Invoice[]) => write(keys.invoices, invoices), getPayments: () => read<PaymentSettings>(keys.payments, defaultPaymentSettings), setPayments: (settings: PaymentSettings) => write(keys.payments, settings), getBranding: () => read<BrandingSettings>(keys.branding, defaultBranding), setBranding: (settings: BrandingSettings) => write(keys.branding, settings) };
+import type { BrandingSettings, Invoice, PaymentSettings } from "../types";
+import { defaultBranding, defaultPaymentSettings, seedInvoices } from "./demoData";
+
+// Keys are namespaced by userId so each account has its own data
+const keys = (uid: string) => ({
+  invoices: `grassbuddy:${uid}:invoices`,
+  payments: `grassbuddy:${uid}:payments`,
+  branding: `grassbuddy:${uid}:branding`,
+});
+
+const read = <T,>(key: string, fallback: T): T => {
+  const raw = localStorage.getItem(key);
+  return raw ? (JSON.parse(raw) as T) : fallback;
+};
+const write = <T,>(key: string, value: T) =>
+  localStorage.setItem(key, JSON.stringify(value));
+
+export const store = {
+  getInvoices: (uid: string) =>
+    read<Invoice[]>(keys(uid).invoices, seedInvoices),
+  setInvoices: (uid: string, invoices: Invoice[]) =>
+    write(keys(uid).invoices, invoices),
+  getPayments: (uid: string) =>
+    read<PaymentSettings>(keys(uid).payments, defaultPaymentSettings),
+  setPayments: (uid: string, settings: PaymentSettings) =>
+    write(keys(uid).payments, settings),
+  getBranding: (uid: string) =>
+    read<BrandingSettings>(keys(uid).branding, defaultBranding),
+  setBranding: (uid: string, settings: BrandingSettings) =>
+    write(keys(uid).branding, settings),
+};
