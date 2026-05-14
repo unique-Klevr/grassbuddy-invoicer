@@ -35,7 +35,7 @@ function Shell({ children, user, onLogout }: { children: React.ReactNode; user: 
           <div className="flex items-center gap-2">
             {user
               ? <button className={secondary} onClick={onLogout}>Log out</button>
-              : <><Link className={secondary} to="/login">Login</Link><Link className={founderCta} to="/checkout">Get $49 Deal</Link></>
+              : <><Link className={secondary} to="/login">Login</Link><Link className={founderCta} to="/checkout">Get $9.99 Deal</Link></>
             }
           </div>
         </div>
@@ -57,7 +57,7 @@ function Landing() {
             <h1 className="max-w-3xl text-4xl font-semibold leading-tight md:text-6xl">Send professional lawn care invoices in under 60 seconds.</h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-gray-300">GrassBuddy helps service businesses create clean invoices, add payment links, and get paid faster.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link className={founderCta} to="/checkout">Get Lifetime Access for $49 <ArrowRight size={16} /></Link>
+              <Link className={founderCta} to="/checkout">Get Lifetime Access for $9.99 <ArrowRight size={16} /></Link>
               <Link className={button + " border border-white/20 text-white hover:bg-white/10"} to="/login">View demo</Link>
             </div>
           </div>
@@ -67,7 +67,7 @@ function Landing() {
         </div>
       </section>
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-14 md:grid-cols-3">
-        <DealCard title="Founder Lifetime" price="$49 one time" active />
+        <DealCard title="Founder Lifetime" price="$9.99 one time" active />
         <DealCard title="Future Pro Plan" price="$19/month" />
         <DealCard title="Future Business Plan" price="$49/month" />
       </section>
@@ -109,10 +109,10 @@ function Pricing() {
   return (
     <main className="mx-auto max-w-7xl px-4 py-14">
       <h1 className="text-4xl font-semibold">Founders Lifetime Deal</h1>
-      <p className="mt-3 max-w-2xl text-gray-600">$49 one time for lifetime access to Version 1 and future founder updates.</p>
+      <p className="mt-3 max-w-2xl text-gray-600">$9.99 one time for lifetime access to Version 1 and future founder updates.</p>
       <div className="mt-6"><Link className={paypalCta} to="/checkout"><Wallet size={16} /> Checkout with PayPal</Link></div>
       <div className="mt-8 grid gap-6 md:grid-cols-3">
-        <DealCard title="Founder Lifetime" price="$49 one time" active />
+        <DealCard title="Founder Lifetime" price="$9.99 one time" active />
         <DealCard title="Future Pro Plan" price="$19/month" />
         <DealCard title="Future Business Plan" price="$49/month" />
       </div>
@@ -130,7 +130,7 @@ function Checkout() {
         <p className="mt-2 text-gray-600">Pay once through PayPal and get lifetime access to GrassBuddy Version 1.</p>
         <div className="mt-6 rounded-lg bg-pine-50 p-5">
           <div className="text-sm text-gray-600">Today</div>
-          <div className="mt-1 text-5xl font-semibold">$49</div>
+          <div className="mt-1 text-5xl font-semibold">$9.99</div>
           <div className="mt-2 text-sm text-pine-900">One-time founder purchase</div>
         </div>
         <label className={label + " mt-5 block"}>
