@@ -17,7 +17,7 @@ Copy `.env.example` to `.env` and add Supabase values, then run `supabase/schema
 
 ## PayPal founder checkout
 
-Create a PayPal checkout button or payment link for the $49 founder deal, then set both values before launch:
+Create a PayPal checkout button or payment link for the $9.99 founder deal, then set both values before launch:
 
 ```bash
 VITE_PAYPAL_FOUNDER_CHECKOUT_URL=https://www.paypal.com/ncp/payment/Z2TLRXLMMF57S
