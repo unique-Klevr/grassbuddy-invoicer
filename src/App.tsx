@@ -4,15 +4,15 @@ import {
   ArrowRight, 
   BadgeDollarSign, 
   Check, 
+  ChevronDown,
   Copy, 
   Download, 
+  ExternalLink,
   Leaf, 
   Plus, 
   Settings, 
   Wallet, 
-  Phone, 
   Mail, 
-  MapPin, 
   Facebook, 
   Twitter, 
   Instagram, 
@@ -51,8 +51,7 @@ function Shell({ children, user, onLogout }: { children: React.ReactNode; user: 
       <div className="no-print hidden bg-pine-950 py-2 text-white/80 md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 text-[10px] font-bold uppercase tracking-widest">
           <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5"><MapPin size={12} className="text-lime-400" /> 657 Twin Lakes Drive, Reno, NV 89523</span>
-            <span className="flex items-center gap-1.5"><Mail size={12} className="text-lime-400" /> info@grassbuddy.app</span>
+            <span className="flex items-center gap-1.5"><Mail size={12} className="text-lime-400" /> info@grassbuddypro.com</span>
           </div>
           <div className="flex items-center gap-4">
             <span>Follow Us:</span>
@@ -64,11 +63,9 @@ function Shell({ children, user, onLogout }: { children: React.ReactNode; user: 
       </div>
 
       <header className="no-print sticky top-0 z-30 border-b border-line bg-white/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
           <Link to="/" className="flex items-center gap-2 text-2xl font-black tracking-tighter text-pine-950">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pine-950 text-lime-400">
-              <Leaf size={24} />
-            </div>
+            <img src={asset("logo.png")} alt="GrassBuddy Pro" className="h-12 w-12 rounded-xl object-contain" />
             GrassBuddy
           </Link>
           <nav className="hidden items-center gap-8 text-sm font-bold uppercase tracking-wider text-pine-950/70 md:flex">
@@ -80,17 +77,9 @@ function Shell({ children, user, onLogout }: { children: React.ReactNode; user: 
                 <Link to="/settings/payments" className="hover:text-pine-950">Payments</Link>
               </>
             )}
+            <ProductsDropdown />
           </nav>
           <div className="flex items-center gap-4">
-            <div className="hidden items-center gap-3 lg:flex">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-lime-400/20 text-pine-950">
-                <Phone size={18} />
-              </div>
-              <div className="text-right">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-pine-950/50">Call Now</p>
-                <p className="text-sm font-black text-pine-950 underline underline-offset-2">775-329-1531</p>
-              </div>
-            </div>
             {user
               ? <button className={secondary} onClick={onLogout}>Log out</button>
               : <div className="hidden items-center gap-2 md:flex">
@@ -110,6 +99,7 @@ function Shell({ children, user, onLogout }: { children: React.ReactNode; user: 
               <Link to="/" onClick={() => setMobileOpen(false)}>Home</Link>
               <Link to="/pricing" onClick={() => setMobileOpen(false)}>Pricing</Link>
               {user && <><Link to="/dashboard" onClick={() => setMobileOpen(false)}>Dashboard</Link><Link to="/settings/payments" onClick={() => setMobileOpen(false)}>Payments</Link></>}
+              <a href="https://grassbuddy-saas.vercel.app/" target="_blank" rel="noreferrer" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>Leads <ExternalLink size={14} /></a>
               {!user && <>
                 <Link to="/login" onClick={() => setMobileOpen(false)}>Login</Link>
                 <Link className={primary + " text-center"} to="/checkout" onClick={() => setMobileOpen(false)}>Get $9.99 Deal</Link>
@@ -125,10 +115,8 @@ function Shell({ children, user, onLogout }: { children: React.ReactNode; user: 
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid gap-12 md:grid-cols-4">
             <div className="col-span-2">
-              <div className="flex items-center gap-2 text-2xl font-black tracking-tighter">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white text-pine-950">
-                  <Leaf size={24} />
-                </div>
+              <div className="flex items-center gap-3 text-2xl font-black tracking-tighter">
+                <img src={asset("logo.png")} alt="GrassBuddy Pro" className="h-14 w-14 rounded-xl object-contain" />
                 GrassBuddy
               </div>
               <p className="mt-6 max-w-md text-lg font-medium leading-relaxed text-white/70">
@@ -147,15 +135,13 @@ function Shell({ children, user, onLogout }: { children: React.ReactNode; user: 
                 <li><Link to="/" className="hover:text-white">Home</Link></li>
                 <li><Link to="/pricing" className="hover:text-white">Pricing</Link></li>
                 <li><Link to="/dashboard" className="hover:text-white">Dashboard</Link></li>
-                <li><Link to="/settings/payments" className="hover:text-white">Payments</Link></li>
+                <li><a href="https://grassbuddy-saas.vercel.app/" target="_blank" rel="noreferrer" className="hover:text-white">Leads</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-sm font-black uppercase tracking-widest text-lime-400">Contact Us</h4>
               <ul className="mt-6 space-y-4 text-sm font-medium text-white/60">
-                <li className="flex items-start gap-3"><Phone size={18} className="text-lime-400" /> 775-329-1531</li>
-                <li className="flex items-start gap-3"><Mail size={18} className="text-lime-400" /> info@grassbuddy.app</li>
-                <li className="flex items-start gap-3"><MapPin size={18} className="text-lime-400" /> 657 Twin Lakes Drive, Reno, NV 89523</li>
+                <li className="flex items-start gap-3"><Mail size={18} className="text-lime-400" /> info@grassbuddypro.com</li>
               </ul>
             </div>
           </div>
@@ -172,6 +158,36 @@ function SocialIcon({ icon }: { icon: React.ReactNode }) {
   return (
     <div className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white/5 transition hover:bg-lime-400 hover:text-pine-950">
       {icon}
+    </div>
+  );
+}
+
+function ProductsDropdown() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+      <button className="flex items-center gap-1 hover:text-pine-950" onClick={() => setOpen(!open)}>
+        Other Products <ChevronDown size={14} className={`transition ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && (
+        <div className="absolute left-0 top-full mt-2 w-56 overflow-hidden rounded-2xl border border-line bg-white p-2 shadow-lift">
+          <a 
+            href="https://grassbuddy-saas.vercel.app/" 
+            target="_blank" 
+            rel="noreferrer" 
+            className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-bold normal-case tracking-normal text-pine-950 transition hover:bg-lime-50"
+          >
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-pine-950 text-lime-400">
+              <Users size={16} />
+            </div>
+            <div>
+              <p className="font-black">Leads</p>
+              <p className="text-[10px] font-medium text-pine-950/50">CRM & Lead Management</p>
+            </div>
+            <ExternalLink size={14} className="ml-auto text-pine-950/30" />
+          </a>
+        </div>
+      )}
     </div>
   );
 }
